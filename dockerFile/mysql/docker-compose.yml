@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_8.0.22
+    ports:
+      - "3306:3306"
+    environment:
+      TZ: "Asia/Shanghai"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: "root"
+      MYSQL_PASS: "root"
+    volumes:
+      - ./data:/var/lib/mysql
+#     -- 服务器首先读取的是/etc/my.cnf文件，如果前一个文件不存在则继续读/etc/mysql/my.cnf文件，如果还不存在依次向后查找。
+      - ./conf/my.cnf:/etc/my.cnf
+    restart: always
+    network_mode: "bridge"

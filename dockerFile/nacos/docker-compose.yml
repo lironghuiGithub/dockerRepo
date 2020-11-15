@@ -1,0 +1,22 @@
+version: "3.7"  #这个版本和宿主机docker-compose版本相关
+services:
+  nacos: #服务名
+    image: nacos/nacos-server:latest #使用nacos镜像
+    container_name: nacos-standalone
+    volumes: #挂载目录
+      - ./logs:/home/nacos/logs
+      - ./data:/home/nacos/data
+    environment:
+      TZ: "Asia/Shanghai"
+      MODE: "standalone"
+      PREFER_HOST_MODE: "ip"
+      NACOS_SERVER_PORT: "8848"
+      NACOS_SERVER_IP: "0.0.0.0"
+      JVM_XMS: "512m"
+      JVM_XMX: "512m"
+      JVM_MS: "64m"
+      JVM_MMS: "64m"
+
+    ports:
+      - "8848:8848"
+    restart: "no"

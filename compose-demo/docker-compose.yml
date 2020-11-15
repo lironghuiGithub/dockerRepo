@@ -1,0 +1,13 @@
+version: '3'
+services:
+  docker-demo:
+    image: app:6
+    container_name: app8081
+    ports:
+      - "8081:8081"
+    volumes:
+      - "/lrh/docker:/AEData"
+    environment:
+      - server.port=8081
+      - name=app8081
+      - JAVA_OPS=-Xms256m -Xmx256m -Dkey1=v1
